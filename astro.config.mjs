@@ -1,8 +1,5 @@
-import cloudflare from '@astrojs/cloudflare';
-
 export default {
-  output: 'server',
-  adapter: cloudflare(),
+  output: 'static',
   vite: {
     server: {
       port: 3000

@@ -10,8 +10,7 @@
     "check": "astro sync && tsc --noEmit"
   },
   "dependencies": {
-    "astro": "^4.0.0",
-    "@astrojs/cloudflare": "^9.0.0"
+    "astro": "^4.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^8.0.0",
