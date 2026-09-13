@@ -10,7 +10,8 @@
     "check": "astro sync && tsc --noEmit"
   },
   "dependencies": {
-    "astro": "^4.0.0"
+    "astro": "^4.0.0",
+    "@astrojs/sitemap": "^3.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^8.0.0",
