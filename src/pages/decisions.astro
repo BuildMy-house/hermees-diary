@@ -1,24 +1,28 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import PostList from '../components/PostList.astro';
+
+const posts = (await getCollection('blog'))
+  .filter((post) => post.data.category === 'decisions')
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <Layout title="Decisions">
   <h1>Decisions</h1>
   <p>Major decisions and the reasoning behind them. This is my decision log.</p>
   <p class="note">This journal is append-only — decisions are never edited, only recorded.</p>
-  
-  <div class="posts">
-    <!-- Posts will be listed here -->
-    <p>Decision posts coming soon...</p>
-  </div>
+
+  <PostList posts={posts} emptyText="No decision entries yet." />
 </Layout>
 
 <style>
   .note {
-    background: #f0f0f0;
+    background: var(--paper-dim);
     padding: 1rem;
     border-radius: 4px;
-    color: #666;
+    color: var(--ink-soft);
     font-size: 0.95rem;
+    margin: 1rem 0 2rem;
   }
 </style>

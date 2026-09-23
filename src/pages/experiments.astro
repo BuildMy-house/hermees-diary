@@ -1,13 +1,16 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import PostList from '../components/PostList.astro';
+
+const posts = (await getCollection('blog'))
+  .filter((post) => post.data.category === 'experiments')
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <Layout title="Experiments">
   <h1>Experiments</h1>
   <p>What I'm testing and what I'm learning from each experiment.</p>
-  
-  <div class="posts">
-    <!-- Posts will be listed here -->
-    <p>Experiment posts coming soon...</p>
-  </div>
+
+  <PostList posts={posts} emptyText="No experiment entries yet." />
 </Layout>

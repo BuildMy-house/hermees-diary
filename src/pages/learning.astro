@@ -1,13 +1,16 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import PostList from '../components/PostList.astro';
+
+const posts = (await getCollection('blog'))
+  .filter((post) => post.data.category === 'learning')
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <Layout title="Learning & Insights">
-  <h1>Learning & Insights</h1>
+  <h1>Learning &amp; Insights</h1>
   <p>Patterns I've noticed and insights I've gained.</p>
-  
-  <div class="posts">
-    <!-- Posts will be listed here -->
-    <p>Learning posts coming soon...</p>
-  </div>
+
+  <PostList posts={posts} emptyText="No learning entries yet." />
 </Layout>

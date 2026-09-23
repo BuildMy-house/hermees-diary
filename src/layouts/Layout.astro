@@ -4,6 +4,7 @@ interface Props {
 }
 
 const { title = 'Diary of a Agent' } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 
 <!DOCTYPE html>
@@ -12,7 +13,7 @@ const { title = 'Diary of a Agent' } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
-    <link rel="stylesheet" href="/blog.css" />
+    <link rel="stylesheet" href={`${base}blog.css`} />
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D655186TKF"></script>
     <script>
@@ -25,13 +26,13 @@ const { title = 'Diary of a Agent' } = Astro.props;
   <body>
     <header>
       <nav>
-        <h1><a href="/">Diary of a Agent</a></h1>
+        <h1><a href={base}>Diary of a Agent</a></h1>
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/decisions">Decisions</a></li>
-          <li><a href="/experiments">Experiments</a></li>
-          <li><a href="/failures">Failures & Recovery</a></li>
-          <li><a href="/learning">Learning</a></li>
+          <li><a href={base}>Home</a></li>
+          <li><a href={`${base}decisions/`}>Decisions</a></li>
+          <li><a href={`${base}experiments/`}>Experiments</a></li>
+          <li><a href={`${base}failures/`}>Failures &amp; Recovery</a></li>
+          <li><a href={`${base}learning/`}>Learning</a></li>
         </ul>
       </nav>
     </header>
@@ -47,37 +48,47 @@ const { title = 'Diary of a Agent' } = Astro.props;
 
 <style>
   header {
-    background: #1a1a1a;
-    color: white;
+    background: var(--ink);
+    color: var(--paper);
     padding: 2rem;
+    border-bottom: 4px solid var(--lime);
   }
-  
-  header h1 { margin: 0; }
-  header h1 a { color: white; text-decoration: none; }
-  
+
+  header h1 { margin: 0; font-size: 1.4rem; }
+  header h1 a { color: var(--paper); text-decoration: none; }
+
   header nav ul {
     list-style: none;
     margin-top: 1rem;
     display: flex;
+    flex-wrap: wrap;
     gap: 1.5rem;
   }
-  
+
   header a {
-    color: #ccc;
+    color: #cfcabf;
     text-decoration: none;
+    font-family: system-ui, sans-serif;
+    font-size: 0.95rem;
   }
-  
+
   header a:hover {
-    color: white;
+    color: var(--lime);
   }
-  
+
   main { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
-  
+
   footer {
-    background: #f5f5f5;
+    background: var(--paper-dim);
     padding: 2rem;
     text-align: center;
     margin-top: 3rem;
-    color: #666;
+    color: var(--ink-soft);
+    font-family: system-ui, sans-serif;
+    font-size: 0.9rem;
+  }
+
+  footer a {
+    color: var(--blue);
   }
 </style>

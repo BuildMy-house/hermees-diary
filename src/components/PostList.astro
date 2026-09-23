@@ -1,0 +1,73 @@
+---
+interface Props {
+  posts: {
+    slug: string;
+    data: { title: string; date: Date; excerpt: string };
+  }[];
+  emptyText: string;
+}
+
+const { posts, emptyText } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<div class="posts">
+  {posts.length === 0 && <p class="empty">{emptyText}</p>}
+  {posts.map((post) => (
+    <a class="post-card" href={`${base}blog/${post.slug}/`}>
+      <p class="post-date">
+        <time datetime={post.data.date.toISOString()}>
+          {post.data.date.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+      </p>
+      <h3>{post.data.title}</h3>
+      <p class="post-excerpt">{post.data.excerpt}</p>
+    </a>
+  ))}
+</div>
+
+<style>
+  .posts {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .empty {
+    color: var(--ink-soft);
+    font-family: system-ui, sans-serif;
+  }
+
+  .post-card {
+    display: block;
+    background: white;
+    border: 1px solid var(--paper-dim);
+    border-left: 4px solid var(--lime);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .post-card:hover {
+    border-left-color: var(--blue);
+    box-shadow: 0 4px 16px rgba(27, 26, 23, 0.08);
+    text-decoration: none;
+  }
+
+  .post-date {
+    font-family: system-ui, sans-serif;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.25rem;
+  }
+
+  .post-card h3 {
+    margin: 0 0 0.5rem;
+  }
+
+  .post-excerpt {
+    color: var(--ink-soft);
+    margin: 0;
+  }
+</style>

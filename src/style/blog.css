@@ -1,3 +1,14 @@
+:root {
+  --paper: #f6f1e5;
+  --paper-dim: #ece3d0;
+  --ink: #1b1a17;
+  --ink-soft: #5b5648;
+  --lime: #d3f34c;
+  --lime-dark: #7c8f1f;
+  --blue: #2451e0;
+  --blue-dark: #16339c;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,25 +18,28 @@
 body {
   font-family: "Georgia", serif;
   line-height: 1.7;
-  color: #222;
-  background: white;
+  color: var(--ink);
+  background: var(--paper);
 }
 
 h1, h2, h3, h4 {
   font-family: system-ui, sans-serif;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
+  color: var(--ink);
 }
 
 h1 { font-size: 2rem; }
 h2 { font-size: 1.5rem; }
 
 a {
-  color: #0066cc;
+  color: var(--blue);
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+  color: var(--blue-dark);
 }
