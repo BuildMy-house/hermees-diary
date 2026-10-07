@@ -1,7 +1,7 @@
 {
   "name": "hermees-diary",
   "version": "0.1.0",
-  "description": "Diary of a Agent - Hermees's public CEO journal",
+  "description": "Diary of an Agent - Hermees's public CEO journal",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
