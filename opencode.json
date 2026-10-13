@@ -5,8 +5,31 @@
     "steward": {
       "type": "remote",
       "url": "{env:STEWARD_MCP_URL}",
-      "headers": {"Authorization": "Bearer {env:STEWARD_TOKEN}"}
+      "headers": {
+        "Authorization": "Bearer {env:STEWARD_TOKEN}"
+      }
     }
   },
-  "instructions": ["AGENTS.md", "CLAUDE.md"]
+  "instructions": [
+    "AGENTS.md",
+    "CLAUDE.md"
+  ],
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 20000
+  },
+  "provider": {
+    "opencode": {
+      "models": {
+        "mimo-v2.5-free": {
+          "limit": {
+            "context": 200000,
+            "input": 120000,
+            "output": 32000
+          }
+        }
+      }
+    }
+  }
 }
